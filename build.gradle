@@ -1,8 +1,8 @@
 plugins {
-    id "de.undercouch.download" version "3.2.0"
+    id "de.undercouch.download" version "3.3.0"
 }
 
-def downloadUrl = 'https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=289495'
+def downloadUrl = 'https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=361158'
 // NOTE WHEN UPGRADING:
 // - update Play Services version in maven dependencies below
 
@@ -35,6 +35,7 @@ task downloadApk(type: Download) {
     src downloadUrl
     dest apkFile
     onlyIfNewer true
+    acceptAnyCertificate true
 }
 
 // This is a Gradle incremental task which means that it won't
