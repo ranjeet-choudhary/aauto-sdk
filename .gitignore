@@ -1,5 +1,5 @@
 /.gradle
-/build
+/build/*
 *.iml
-!/build/aauto.aar
-!/build/in.apk
+!aauto.aar
+!in.apk
