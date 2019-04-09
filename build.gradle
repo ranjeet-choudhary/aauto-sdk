@@ -2,7 +2,7 @@ plugins {
     id "de.undercouch.download" version "3.3.0"
 }
 
-def downloadUrl = 'https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=361158'
+def downloadUrl = 'https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=658345'
 // NOTE WHEN UPGRADING:
 // - update Play Services version in maven dependencies below
 
