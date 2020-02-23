@@ -1,5 +1,11 @@
-/.gradle
-/build/*
 *.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
 !aauto.aar
 !in.apk
