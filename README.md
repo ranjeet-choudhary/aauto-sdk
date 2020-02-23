@@ -141,7 +141,7 @@ private final CarConnectionCallback mCarConnectionCallback = new CarConnectionCa
         try {
             Log.d(TAG, "Connected to car");
             CarSensorManager sensorManager = (CarSensorManager) car.getCarManager(Car.SENSOR_SERVICE);
-            
+
             //Get supported sensor types:
             int[] supportedSensors = sensorManager.getSupportedSensors();
             for(int sensorId : supportedSensors){
@@ -220,7 +220,7 @@ In order to use the vendor channel:
    <uses-permission android:name="com.google.android.gms.permission.CAR_VENDOR_EXTENSION"/>
    ```
    in its _AndroidManifest.xml_ (and granted at runtime on Marshmallow or later).
-   
+
 ## Building
 
 Usually, there's no need to build the SDK yourself. If you have a need, please share it by
