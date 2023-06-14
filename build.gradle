@@ -1,8 +1,12 @@
 plugins {
-    id "de.undercouch.download" version "3.2.0"
+    id "de.undercouch.download" version "3.4.3"
 }
 
-def downloadUrl = 'https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=289495'
+// InitialWaze (Needed for android.support.car) [Don't change]
+def downloadUrl = 'https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=361158'
+
+
+
 // NOTE WHEN UPGRADING:
 // - update Play Services version in maven dependencies below
 
@@ -35,6 +39,7 @@ task downloadApk(type: Download) {
     src downloadUrl
     dest apkFile
     onlyIfNewer true
+    acceptAnyCertificate true
 }
 
 // This is a Gradle incremental task which means that it won't
@@ -48,7 +53,7 @@ class JavaExecExtract extends JavaExec {
 }
 
 task extractApk(dependsOn: downloadApk, type: JavaExecExtract) {
-    classpath = files('libs/apktool_2.3.0.jar')
+    classpath = files('libs/apktool_2.4.0.jar')
     main = 'brut.apktool.Main'
     args 'decode', '-o', apkDir, '-f', apkFile
     inputFile = apkFile
@@ -248,13 +253,13 @@ task collectSmali(dependsOn: extractApk) {
 }
 
 task buildDex(dependsOn: collectSmali, type: JavaExec) {
-    classpath = files('libs/smali-2.2.1.jar')
+    classpath = files('libs/smali-2.2.7.jar')
     main = 'org.jf.smali.Main'
     args 'a', '-o', new File(outDir, 'classes.dex'), smaliDir
 }
 
 task buildJar(dependsOn: buildDex, type: JavaExec) {
-    classpath = fileTree(dir: 'libs/dex2jar-2.0')
+    classpath = fileTree(dir: 'libs/dex-tools-2.1')
     main = 'com.googlecode.dex2jar.tools.Dex2jarCmd'
     args '-d', '-o', new File(outDir, 'classes.jar'), '--force',
             new File(outDir, 'classes.dex')
